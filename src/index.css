@@ -543,6 +543,56 @@ textarea:focus-visible {
   padding: var(--space-5);
 }
 
+.question-tips {
+  background: color-mix(in srgb, var(--color-surface) 80%, var(--color-surface-soft));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.question-tips h3 {
+  font-size: 1rem;
+  color: var(--palette-ink);
+  margin-bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.tips-content {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.tip-section h4 {
+  font-size: 0.9rem;
+  color: var(--color-text-strong);
+  margin-bottom: var(--space-2);
+}
+
+.tip-section ul {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.tip-section li {
+  font-size: 0.86rem;
+  color: var(--color-text);
+  line-height: 1.6;
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.tip-section li::before {
+  content: "•";
+  position: absolute;
+  left: var(--space-1);
+  color: var(--palette-rose);
+  font-weight: bold;
+}
+
 .control-textarea {
   width: 100%;
   min-height: 92px;
@@ -1196,6 +1246,18 @@ textarea:focus-visible {
   .history-detail {
     padding: var(--space-4);
     border-radius: var(--radius-lg);
+  }
+
+  .question-tips {
+    padding: var(--space-3);
+  }
+
+  .question-tips h3 {
+    font-size: 0.95rem;
+  }
+
+  .tip-section li {
+    font-size: 0.82rem;
   }
 
   .control-actions,
