@@ -1643,6 +1643,21 @@ textarea:focus-visible {
   border-color: var(--color-danger);
 }
 
+.app-footer {
+  margin-top: auto;
+  padding: var(--space-5) var(--space-3) var(--space-4);
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--color-text-light);
+  opacity: 0.6;
+}
+
+.app-footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

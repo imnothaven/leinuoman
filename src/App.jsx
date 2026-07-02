@@ -171,6 +171,10 @@ export default function App() {
 
         {tab === "history" && <HistoryPanel />}
 
+        <footer className="app-footer">
+          联系制作者：<a href="mailto:1372488473@qq.com">1372488473@qq.com</a>
+        </footer>
+
         {showModal && (
           <ConfirmModal
             question={question}
