@@ -85,9 +85,9 @@ export default function DeckSelector({ onSelectComplete, selectedCount = 3 }) {
         if (newDrawn.length === selectedCount) {
           setTimeout(() => {
             onSelectComplete(newDrawn);
-          }, 600);
+          }, 400);
         }
-      }, 350);
+      }, 200);
     } else {
       // 第一次点击 → 标记 pending
       setPendingId(card.id);
