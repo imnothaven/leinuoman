@@ -19,8 +19,10 @@ export default function ReadingCard({ card, index, isHistory = false }) {
     }, scaleDelay);
 
     const flipTimer = setTimeout(() => {
+      // 只标记 flipped 状态（用于发光效果），不移除 revealing 类。
+      // cardReveal 动画的 forwards 会一直保持在 rotateY(180deg)，
+      // 避免移除动画类时移动端浏览器瞬间回弹到卡背。
       setFlipped(true);
-      setRevealing(false);
     }, scaleDelay + flipDuration);
 
     const infoTimer = setTimeout(() => {
@@ -47,7 +49,7 @@ export default function ReadingCard({ card, index, isHistory = false }) {
         >
           <div className="card-face card-front">
             <img
-              src="/pic/卡背.png"
+              src="/pic/卡背.webp"
               alt="卡背"
               className="reading-card-back-img"
             />

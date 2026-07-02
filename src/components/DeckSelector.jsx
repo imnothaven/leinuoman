@@ -127,7 +127,7 @@ export default function DeckSelector({ onSelectComplete, selectedCount = 3 }) {
                   >
                     <div className="card-face card-front deck-fan-front">
                       <img
-                        src="/pic/卡背.png"
+                        src="/pic/卡背.webp"
                         alt="卡背"
                         className="deck-fan-back-img"
                       />
@@ -149,7 +149,7 @@ export default function DeckSelector({ onSelectComplete, selectedCount = 3 }) {
                 </span>
                 <div className="deck-drawn-preview">
                   <img
-                    src="/pic/卡背.png"
+                    src="/pic/卡背.webp"
                     alt="卡背"
                     className="deck-drawn-back-img"
                   />

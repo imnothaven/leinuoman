@@ -35,7 +35,7 @@ export const CARDS = [
     suit: "红心9",
     keywords: ["消息", "到达", "行动"],
     meaning: "代表消息、来访者或新的动向正在靠近。事情开始流动，需要及时接收信息并作出回应。",
-    image: "/cards/1.png",
+    image: "/cards/1.webp",
   },
   {
     id: 2,
@@ -45,7 +45,7 @@ export const CARDS = [
     suit: "方块6",
     keywords: ["小幸运", "机会", "短暂"],
     meaning: "象征短暂的好运、小机会与轻松感。它带来的助力通常来得快也去得快，适合迅速把握。",
-    image: "/cards/2.png",
+    image: "/cards/2.webp",
   },
   {
     id: 3,
@@ -55,7 +55,7 @@ export const CARDS = [
     suit: "黑桃10",
     keywords: ["远行", "距离", "转移"],
     meaning: "指向旅行、远方、运输、贸易或从熟悉环境中离开。它强调移动、距离以及局势的逐步变化。",
-    image: "/cards/3.png",
+    image: "/cards/3.webp",
   },
   {
     id: 4,
@@ -65,7 +65,7 @@ export const CARDS = [
     suit: "红心K",
     keywords: ["家庭", "安全", "根基"],
     meaning: "代表家庭、居所、私人领域与稳定根基。它强调安全感、传统秩序以及与你最亲近的环境。",
-    image: "/cards/4.png",
+    image: "/cards/4.webp",
   },
   {
     id: 5,
@@ -75,7 +75,7 @@ export const CARDS = [
     suit: "红心7",
     keywords: ["健康", "成长", "根系"],
     meaning: "关联健康、生命力、家族根系与长期成长。树的节奏缓慢，提示事情需要时间沉淀。",
-    image: "/cards/5.png",
+    image: "/cards/5.webp",
   },
   {
     id: 6,
@@ -85,7 +85,7 @@ export const CARDS = [
     suit: "梅花K",
     keywords: ["困惑", "不明", "疑虑"],
     meaning: "表示迷雾、混乱、不确定或信息被遮蔽。当前判断容易受干扰，宜等事实更清楚后再行动。",
-    image: "/cards/6.png",
+    image: "/cards/6.webp",
   },
   {
     id: 7,
@@ -95,7 +95,7 @@ export const CARDS = [
     suit: "梅花Q",
     keywords: ["复杂", "诱惑", "警觉"],
     meaning: "代表复杂路径、诱惑、嫉妒或潜在欺瞒。它提醒你放慢判断，留意隐藏动机和曲折关系。",
-    image: "/cards/7.png",
+    image: "/cards/7.webp",
   },
   {
     id: 8,
@@ -105,7 +105,7 @@ export const CARDS = [
     suit: "方块9",
     keywords: ["结束", "停顿", "转化"],
     meaning: "表示一个阶段的终止、停滞、损耗或需要放下。它不只是不利，也意味着旧状态正在转化。",
-    image: "/cards/8.png",
+    image: "/cards/8.webp",
   },
   {
     id: 9,
@@ -115,7 +115,7 @@ export const CARDS = [
     suit: "黑桃Q",
     keywords: ["礼物", "愉悦", "赞美"],
     meaning: "象征礼物、邀请、善意、赞美与令人愉快的社交氛围。它通常带来轻松的支持与好感。",
-    image: "/cards/9.png",
+    image: "/cards/9.webp",
   },
   {
     id: 10,
@@ -125,7 +125,7 @@ export const CARDS = [
     suit: "方块J",
     keywords: ["切断", "突然", "警讯"],
     meaning: "代表突然切断、迅速决定、风险警讯或需要果断处理的局面。行动越拖延，越容易受伤。",
-    image: "/cards/10.png",
+    image: "/cards/10.webp",
   },
   {
     id: 11,
@@ -135,7 +135,7 @@ export const CARDS = [
     suit: "梅花J",
     keywords: ["争执", "重复", "压力"],
     meaning: "指向争论、批评、重复性冲突或精神压力。它也可表示高强度互动，需要避免陷入循环消耗。",
-    image: "/cards/11.png",
+    image: "/cards/11.webp",
   },
   {
     id: 12,
@@ -145,7 +145,7 @@ export const CARDS = [
     suit: "方块7",
     keywords: ["谈话", "焦虑", "消息"],
     meaning: "代表交谈、短消息、闲言、电话或内心不安。它强调频繁沟通，也提醒分辨噪音与有效信息。",
-    image: "/cards/12.png",
+    image: "/cards/12.webp",
   },
   {
     id: 13,
@@ -155,7 +155,7 @@ export const CARDS = [
     suit: "黑桃J",
     keywords: ["新生", "稚嫩", "简单"],
     meaning: "象征新的开始、孩子、初学状态或尚未成熟的事物。它带来新鲜感，也提示经验仍需累积。",
-    image: "/cards/13.png",
+    image: "/cards/13.webp",
   },
   {
     id: 14,
@@ -165,7 +165,7 @@ export const CARDS = [
     suit: "梅花9",
     keywords: ["谨慎", "策略", "工作"],
     meaning: "代表谨慎、自我保护、谋生工作或策略性处理。它提醒你核查动机，不要只看表面说法。",
-    image: "/cards/14.png",
+    image: "/cards/14.webp",
   },
   {
     id: 15,
@@ -175,7 +175,7 @@ export const CARDS = [
     suit: "梅花10",
     keywords: ["力量", "资源", "权威"],
     meaning: "象征力量、保护、资源、财富管理或有影响力的人。它强调强势支撑，也可能指过度控制。",
-    image: "/cards/15.png",
+    image: "/cards/15.webp",
   },
   {
     id: 16,
@@ -185,7 +185,7 @@ export const CARDS = [
     suit: "红心6",
     keywords: ["希望", "指引", "清晰"],
     meaning: "代表希望、灵感、方向感与长远愿景。它让局势变得更清楚，适合相信目标并持续推进。",
-    image: "/cards/16.png",
+    image: "/cards/16.webp",
   },
   {
     id: 17,
@@ -195,7 +195,7 @@ export const CARDS = [
     suit: "红心Q",
     keywords: ["变化", "迁移", "改善"],
     meaning: "表示变化、搬迁、升级、循环更新或局势改善。它通常指向状态转换，而不是原地不动。",
-    image: "/cards/17.png",
+    image: "/cards/17.webp",
   },
   {
     id: 18,
@@ -205,7 +205,7 @@ export const CARDS = [
     suit: "红心10",
     keywords: ["忠诚", "朋友", "支持"],
     meaning: "象征朋友、忠诚、陪伴、信任与可靠支持。它说明你可以关注身边愿意长期站在你这边的人。",
-    image: "/cards/18.png",
+    image: "/cards/18.webp",
   },
   {
     id: 19,
@@ -215,7 +215,7 @@ export const CARDS = [
     suit: "黑桃6",
     keywords: ["机构", "边界", "独立"],
     meaning: "代表机构、权威体系、规则、距离感或独立状态。它强调结构与边界，有时也带来孤立感。",
-    image: "/cards/19.png",
+    image: "/cards/19.webp",
   },
   {
     id: 20,
@@ -225,7 +225,7 @@ export const CARDS = [
     suit: "黑桃8",
     keywords: ["社群", "公众", "活动"],
     meaning: "指向社交圈、公众场合、网络、人群或公开活动。它强调人与人之间的连接和可见度。",
-    image: "/cards/20.png",
+    image: "/cards/20.webp",
   },
   {
     id: 21,
@@ -235,7 +235,7 @@ export const CARDS = [
     suit: "梅花8",
     keywords: ["阻碍", "延迟", "挑战"],
     meaning: "代表阻碍、延迟、困难或暂时难以跨越的问题。它要求耐心、准备和更现实的路线。",
-    image: "/cards/21.png",
+    image: "/cards/21.webp",
   },
   {
     id: 22,
@@ -245,7 +245,7 @@ export const CARDS = [
     suit: "方块Q",
     keywords: ["选择", "分岔", "方向"],
     meaning: "象征多种选择、岔路、犹豫或路径分离。它提醒你明确方向，因为每条路都会带来不同结果。",
-    image: "/cards/22.png",
+    image: "/cards/22.webp",
   },
   {
     id: 23,
@@ -255,7 +255,7 @@ export const CARDS = [
     suit: "梅花7",
     keywords: ["损耗", "焦虑", "流失"],
     meaning: "表示逐渐消耗、资源流失、焦虑或小问题持续侵蚀。它提醒你及时修补漏洞，避免越拖越严重。",
-    image: "/cards/23.png",
+    image: "/cards/23.webp",
   },
   {
     id: 24,
@@ -265,7 +265,7 @@ export const CARDS = [
     suit: "红心J",
     keywords: ["爱", "情感", "善意"],
     meaning: "代表爱、好感、热情、善意与情感联结。它强调真诚的感受，也适合关注关系中的温度。",
-    image: "/cards/24.png",
+    image: "/cards/24.webp",
   },
   {
     id: 25,
@@ -275,7 +275,7 @@ export const CARDS = [
     suit: "梅花A",
     keywords: ["承诺", "契约", "循环"],
     meaning: "象征承诺、契约、婚姻、合作或重复循环。它强调关系或协议中的绑定与持续性。",
-    image: "/cards/25.png",
+    image: "/cards/25.webp",
   },
   {
     id: 26,
@@ -285,7 +285,7 @@ export const CARDS = [
     suit: "方块10",
     keywords: ["秘密", "知识", "未知"],
     meaning: "代表秘密、学习、研究、记录或尚未公开的信息。它说明关键内容仍被隐藏，需要继续探查。",
-    image: "/cards/26.png",
+    image: "/cards/26.webp",
   },
   {
     id: 27,
@@ -295,7 +295,7 @@ export const CARDS = [
     suit: "黑桃7",
     keywords: ["文书", "通知", "信息"],
     meaning: "指向书面消息、文件、邮件、通知或正式表达。它关注可被记录和传递的具体信息。",
-    image: "/cards/27.png",
+    image: "/cards/27.webp",
   },
   {
     id: 28,
@@ -305,7 +305,7 @@ export const CARDS = [
     suit: "红心A",
     keywords: ["男性", "当事人", "阳性"],
     meaning: "代表男性当事人、重要男性人物或阳性能量。具体指向需结合问题、提问者身份和邻近牌判断。",
-    image: "/cards/28.png",
+    image: "/cards/28.webp",
   },
   {
     id: 29,
@@ -315,7 +315,7 @@ export const CARDS = [
     suit: "黑桃A",
     keywords: ["女性", "当事人", "阴性"],
     meaning: "代表女性当事人、重要女性人物或阴性能量。具体指向需结合问题、提问者身份和邻近牌判断。",
-    image: "/cards/29.png",
+    image: "/cards/29.webp",
   },
   {
     id: 30,
@@ -325,7 +325,7 @@ export const CARDS = [
     suit: "黑桃K",
     keywords: ["成熟", "平和", "德行"],
     meaning: "象征成熟、平和、德行、长者或沉静的智慧。它强调克制、体面和经过时间沉淀的判断。",
-    image: "/cards/30.png",
+    image: "/cards/30.webp",
   },
   {
     id: 31,
@@ -335,7 +335,7 @@ export const CARDS = [
     suit: "方块A",
     keywords: ["成功", "活力", "清晰"],
     meaning: "代表成功、活力、信心、快乐与清晰结果。它通常是强正面牌，说明事情有被照亮和推进的力量。",
-    image: "/cards/31.png",
+    image: "/cards/31.webp",
   },
   {
     id: 32,
@@ -345,7 +345,7 @@ export const CARDS = [
     suit: "红心8",
     keywords: ["情绪", "直觉", "名誉"],
     meaning: "关联情绪、直觉、想象、潜意识和社会认可。它提醒你同时观察内心感受与外界评价。",
-    image: "/cards/32.png",
+    image: "/cards/32.webp",
   },
   {
     id: 33,
@@ -355,7 +355,7 @@ export const CARDS = [
     suit: "方块8",
     keywords: ["答案", "开启", "解决"],
     meaning: "代表关键、答案、解决方案和开启通道。它说明问题有重要突破口，核心在于找到正确入口。",
-    image: "/cards/33.png",
+    image: "/cards/33.webp",
   },
   {
     id: 34,
@@ -365,7 +365,7 @@ export const CARDS = [
     suit: "方块K",
     keywords: ["资金", "商业", "流动"],
     meaning: "象征金钱、商业、交易、资源和流动性。它强调价值交换，也可表示情境中资源正在增加或流转。",
-    image: "/cards/34.png",
+    image: "/cards/34.webp",
   },
   {
     id: 35,
@@ -375,7 +375,7 @@ export const CARDS = [
     suit: "黑桃9",
     keywords: ["稳定", "工作", "长期"],
     meaning: "代表稳定、安全、职业、坚持和长久目标。它说明事情需要扎根，也可能指向固定不动的状态。",
-    image: "/cards/35.png",
+    image: "/cards/35.webp",
   },
   {
     id: 36,
@@ -385,6 +385,6 @@ export const CARDS = [
     suit: "梅花6",
     keywords: ["负担", "责任", "信念"],
     meaning: "象征负担、责任、考验、信念或无法轻易回避的课题。它要求承受现实，并从压力中看见意义。",
-    image: "/cards/36.png",
+    image: "/cards/36.webp",
   },
 ];

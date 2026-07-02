@@ -209,7 +209,6 @@ textarea:focus-visible {
   cursor: default;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transition: transform var(--transition-slow);
   will-change: transform;
 }
 

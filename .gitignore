@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# 原始大体积图片本地备份（不提交）
+backup-images/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

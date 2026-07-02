@@ -41,6 +41,13 @@ export default function App() {
   function handleSelectComplete(selectedCards) {
     try {
       const spread = createSpread(selectedCards);
+      // 预加载牌面图片，让翻牌时图片已就绪、即时显示
+      spread.forEach((card) => {
+        if (card.image) {
+          const img = new Image();
+          img.src = card.image;
+        }
+      });
       setCards(spread);
       setTransitioning(true);
       setShowPrompt(false);
