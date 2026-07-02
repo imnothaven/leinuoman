@@ -999,7 +999,14 @@ textarea:focus-visible {
   will-change: transform, opacity;
 }
 
-.deck-fan-card:hover:not(:disabled),
+@media (hover: hover) {
+  .deck-fan-card:hover:not(:disabled) {
+    z-index: 100 !important;
+    transform: translateY(-14px);
+    border-color: color-mix(in srgb, var(--palette-pink) 54%, transparent);
+  }
+}
+
 .deck-fan-card:focus-visible {
   z-index: 100 !important;
   transform: translateY(-14px);
@@ -1297,7 +1304,7 @@ textarea:focus-visible {
   }
 
   .modal-overlay {
-    align-items: flex-end;
+    align-items: center;
     padding: var(--space-3);
   }
 
