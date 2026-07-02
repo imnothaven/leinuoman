@@ -365,6 +365,11 @@ textarea:focus-visible {
   flex-direction: column;
 }
 
+.card-info-placeholder {
+  width: 100%;
+  min-height: 220px;
+}
+
 .card-info-enter {
   animation: softRise 360ms var(--ease-out) both;
 }
@@ -453,7 +458,7 @@ textarea:focus-visible {
 }
 
 .history-detail {
-  background: #fff5ff;
+  background: #fbf6f9;
 }
 
 .reading-panel {
@@ -745,16 +750,6 @@ textarea:focus-visible {
   box-shadow: var(--shadow-lg);
   text-align: center;
   animation: modalEnter 280ms var(--ease-out) both;
-}
-
-.modal-mark {
-  justify-self: center;
-  width: 52px;
-  height: 52px;
-  border: 1px solid color-mix(in srgb, var(--palette-pink) 38%, transparent);
-  border-radius: 50%;
-  background: var(--palette-rose);
-  box-shadow: 0 14px 28px color-mix(in srgb, var(--palette-rose) 24%, transparent);
 }
 
 .modal-box h3 {

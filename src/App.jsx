@@ -24,6 +24,7 @@ export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [phase, setPhase] = useState("input"); // "input" | "select" | "result"
   const [transitioning, setTransitioning] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(false);
 
   function handleConfirmClick() {
     if (!question.trim()) return;
@@ -46,9 +47,6 @@ export default function App() {
       setTimeout(() => {
         setPhase("result");
         setTransitioning(false);
-        setCardsDrawn(true);
-        // Wait for all 3 cards to finish flipping (last card: index 2, delay 400+1000+100=1500ms)
-        setTimeout(() => setShowPrompt(true), 1600);
       }, 520);
     } catch (e) {
       console.error("选牌出错:", e);
@@ -61,7 +59,7 @@ export default function App() {
       try {
         const reading = getBasicReading(cards);
         const summary = getSpreadSummary(reading);
-        
+
         saveReading({
           question,
           spread: { type: "three", name: summary.title },
@@ -75,13 +73,24 @@ export default function App() {
     }
   }, [cards, phase, question]);
 
+  // 当结果显示时（包括从历史记录切回），等三张牌的翻牌和基础解读
+  // 小框都完整出现后再显示 AI 解读提示词框。
+  // 翻牌+基础解读同时开始：scaleDelay(0/200/400) + softRise(360)，
+  // 最后一张小框在 760ms 完成；最后一张翻牌在 1400ms 完成。
+  useEffect(() => {
+    if (phase === "result" && tab === "draw") {
+      const timer = setTimeout(() => setShowPrompt(true), 1500);
+      return () => clearTimeout(timer);
+    }
+    setShowPrompt(false);
+  }, [phase, tab]);
+
   function handleReset() {
     setCards([]);
     setConfirmed(false);
     setQuestion("");
     setPhase("input");
     setTransitioning(false);
-    setCardsDrawn(false);
     setShowPrompt(false);
   }
 
@@ -93,7 +102,7 @@ export default function App() {
       return [];
     }
   })() : [];
-  
+
   const summary = reading.length > 0 ? (() => {
     try {
       return getSpreadSummary(reading);
@@ -101,27 +110,8 @@ export default function App() {
       return { title: "", themes: [] };
     }
   })() : { title: "", themes: [] };
-  
-  const [cardsDrawn, setCardsDrawn] = useState(false);
-  const [showPrompt, setShowPrompt] = useState(false);
 
-  function handleSelectComplete(selectedCards) {
-    try {
-      const spread = createSpread(selectedCards);
-      setCards(spread);
-      setTransitioning(true);
-      setShowPrompt(false);
-      setTimeout(() => {
-        setPhase("result");
-        setTransitioning(false);
-        setCardsDrawn(true);
-        // Wait for all 3 cards to finish flipping (last card: index 2, delay 400+1000+100=1500ms)
-        setTimeout(() => setShowPrompt(true), 1600);
-      }, 520);
-    } catch (e) {
-      console.error("选牌出错:", e);
-    }
-  }
+  const cardsDrawn = cards.length > 0;
 
   return (
     <ErrorBoundary>

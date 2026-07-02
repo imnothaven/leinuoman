@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import CardImage from "./CardImage";
 
 export default function ReadingCard({ card, index, isHistory = false }) {
   const [flipped, setFlipped] = useState(isHistory);
   const [revealing, setRevealing] = useState(false);
   const [showInfo, setShowInfo] = useState(isHistory);
+  const flipRef = useRef(null);
 
   useEffect(() => {
     if (isHistory) return;
@@ -12,6 +13,7 @@ export default function ReadingCard({ card, index, isHistory = false }) {
     const scaleDelay = index * 200;
     const flipDuration = 1000;
 
+    // Flip and basic-reading info panel start at the same time.
     const revealTimer = setTimeout(() => {
       setRevealing(true);
     }, scaleDelay);
@@ -23,7 +25,7 @@ export default function ReadingCard({ card, index, isHistory = false }) {
 
     const infoTimer = setTimeout(() => {
       setShowInfo(true);
-    }, scaleDelay + flipDuration + 100);
+    }, scaleDelay);
 
     return () => {
       clearTimeout(revealTimer);
@@ -38,9 +40,10 @@ export default function ReadingCard({ card, index, isHistory = false }) {
         {card.spreadLabel || `第 ${index + 1} 张`}
       </span>
 
-      <div className="card-scene">
+      <div className={`card-scene ${flipped && !isHistory ? "card-revealed-glow" : ""}`}>
         <div
-          className={`card-flip ${flipped ? "flipped" : ""} ${revealing ? "revealing" : ""} ${flipped && !isHistory ? "card-revealed-glow" : ""}`}
+          ref={flipRef}
+          className={`card-flip ${flipped ? "flipped" : ""} ${revealing ? "revealing" : ""}`}
         >
           <div className="card-face card-front">
             <img
@@ -56,11 +59,8 @@ export default function ReadingCard({ card, index, isHistory = false }) {
         </div>
       </div>
 
-      {showInfo && (
-        <div
-          className="card-info-panel card-info-enter"
-          style={{ animationDelay: `${index * 150}ms` }}
-        >
+      {showInfo ? (
+        <div className="card-info-panel card-info-enter">
           <h3>{card.name}</h3>
           <div className="card-en">{card.nameEn}</div>
           <p className="card-meaning">{card.meaning}</p>
@@ -70,6 +70,8 @@ export default function ReadingCard({ card, index, isHistory = false }) {
             ))}
           </div>
         </div>
+      ) : (
+        <div className="card-info-placeholder" />
       )}
     </div>
   );

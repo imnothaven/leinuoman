@@ -8,8 +8,6 @@ export default function ConfirmModal({ onConfirm, onCancel, question }) {
         aria-labelledby="confirm-modal-title"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="modal-mark" aria-hidden="true" />
-
         <h3 id="confirm-modal-title">确认你的问题</h3>
 
         <p>
