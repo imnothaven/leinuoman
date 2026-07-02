@@ -5,6 +5,8 @@ import { CARDS } from "../data/cards";
 export default function DeckSelector({ onSelectComplete, selectedCount = 3 }) {
   const [shuffledDeck, setShuffledDeck] = useState([]);
   const [drawn, setDrawn] = useState([]);
+  const [pendingId, setPendingId] = useState(null);
+  const [drawingId, setDrawingId] = useState(null);
   const [layout, setLayout] = useState({ cardW: 100, overlap: 58, perRow: 12 });
   const fanRef = useRef(null);
 
@@ -65,28 +67,37 @@ export default function DeckSelector({ onSelectComplete, selectedCount = 3 }) {
   let globalIndex = 0;
 
   const handleCardClick = (card) => {
-    const alreadyDrawn = drawn.some((d) => d.id === card.id);
+    if (drawingId) return;
+    if (drawn.length >= selectedCount) return;
+    if (drawn.some((d) => d.id === card.id)) return;
 
-    if (alreadyDrawn) {
-      // Deselect: remove from drawn
-      setDrawn((prev) => prev.filter((d) => d.id !== card.id));
-      return;
-    }
+    if (pendingId === card.id) {
+      // 第二次点击同一张牌 → 确认选中
+      setPendingId(null);
+      setDrawingId(card.id);
 
-    // Select: add to drawn if under limit
-    if (drawn.length < selectedCount) {
       const newDrawn = [...drawn, card];
-      setDrawn(newDrawn);
 
-      // Auto-confirm when reaching the target count
-      if (newDrawn.length === selectedCount) {
-        onSelectComplete(newDrawn);
-      }
+      setTimeout(() => {
+        setDrawn(newDrawn);
+        setDrawingId(null);
+
+        if (newDrawn.length === selectedCount) {
+          setTimeout(() => {
+            onSelectComplete(newDrawn);
+          }, 600);
+        }
+      }, 350);
+    } else {
+      // 第一次点击 → 标记 pending
+      setPendingId(card.id);
     }
   };
 
   const handleReshuffle = () => {
     setDrawn([]);
+    setPendingId(null);
+    setDrawingId(null);
     setShuffledDeck(shuffleDeck(CARDS));
   };
 
@@ -109,20 +120,23 @@ export default function DeckSelector({ onSelectComplete, selectedCount = 3 }) {
               {row.map((card, i) => {
                 const num = globalIndex + 1;
                 globalIndex++;
-                const isSelected = drawn.some((d) => d.id === card.id);
+                const isDrawn = drawn.some((d) => d.id === card.id);
+                const isDrawing = drawingId === card.id;
+                const isPending = pendingId === card.id;
                 return (
                   <button
                     key={card.id}
                     type="button"
-                    className={`deck-fan-card ${isSelected ? "fan-selected" : ""}`}
+                    className={`deck-fan-card ${isPending ? "fan-pending" : ""} ${isDrawing ? "fan-drawing" : ""} ${isDrawn ? "fan-drawn" : ""}`}
                     onClick={() => handleCardClick(card)}
-                    aria-pressed={isSelected}
+                    disabled={isDrawn || Boolean(drawingId) || drawn.length >= selectedCount}
+                    aria-pressed={isPending}
                     aria-label={`选择第 ${num} 张牌`}
                     style={{
                       width: `${cardW}px`,
                       aspectRatio: "824 / 1332",
                       marginRight: i < row.length - 1 ? `-${overlap}px` : "0",
-                      zIndex: isSelected ? 200 : i,
+                      zIndex: isPending ? 200 : i,
                     }}
                   >
                     <div className="card-face card-front deck-fan-front">
@@ -158,7 +172,6 @@ export default function DeckSelector({ onSelectComplete, selectedCount = 3 }) {
             ))}
           </div>
         )}
-
       </div>
     </div>
   );
