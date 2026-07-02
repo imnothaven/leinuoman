@@ -1013,10 +1013,6 @@ textarea:focus-visible {
   border-color: color-mix(in srgb, var(--palette-pink) 54%, transparent);
 }
 
-.deck-fan-card:active:not(:disabled) {
-  transform: translateY(-7px) scale(0.98);
-}
-
 .deck-fan-card:disabled {
   cursor: default;
 }
