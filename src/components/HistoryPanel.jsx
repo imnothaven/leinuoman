@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getHistory, deleteHistoryEntry, clearHistory } from "../utils/storage";
 import ReadingPanel from "./ReadingPanel";
+import PromptBox from "./PromptBox";
 import CardImage from "./CardImage";
 
 export default function HistoryPanel() {
@@ -52,7 +53,12 @@ export default function HistoryPanel() {
           summary={selectedEntry.summary}
           question={selectedEntry.question}
           isHistory={true}
-          showReadingEntries={false}
+          showReadingEntries={true}
+        />
+
+        <PromptBox
+          cards={selectedEntry.reading}
+          question={selectedEntry.question}
         />
       </div>
     );
@@ -70,15 +76,17 @@ export default function HistoryPanel() {
 
       {history.length === 0 ? (
         <div className="history-empty">
+          <div className="history-empty-icon"></div>
           <p>还没有抽牌记录</p>
           <p className="history-empty-note">完成一次抽牌解读后，记录将自动保存在这里</p>
         </div>
       ) : (
         <div className="history-list">
-          {history.map((entry) => (
+          {history.map((entry, index) => (
             <div
               key={entry.id}
               className="history-item"
+              style={{ "--stagger-delay": `${index * 80}ms` }}
               onClick={() => setSelectedId(entry.id)}
             >
               <div className="history-item-header">
@@ -105,7 +113,7 @@ export default function HistoryPanel() {
               <div className="history-item-actions">
                 <button
                   type="button"
-                  className="btn btn-outline btn-sm"
+                  className="btn btn-outline btn-sm btn-delete"
                   onClick={(e) => handleDelete(entry.id, e)}
                 >
                   删除

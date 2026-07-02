@@ -5,8 +5,6 @@ import { CARDS } from "../data/cards";
 export default function DeckSelector({ onSelectComplete, selectedCount = 3 }) {
   const [shuffledDeck, setShuffledDeck] = useState([]);
   const [drawn, setDrawn] = useState([]);
-  const [pendingId, setPendingId] = useState(null);
-  const [drawingId, setDrawingId] = useState(null);
   const [layout, setLayout] = useState({ cardW: 100, overlap: 58, perRow: 12 });
   const fanRef = useRef(null);
 
@@ -53,7 +51,7 @@ export default function DeckSelector({ onSelectComplete, selectedCount = 3 }) {
   // 计算更均衡的行数和每排数量
   let rowsCount = Math.ceil(total / perRow);
   let adjustedPerRow = Math.ceil(total / rowsCount);
-  
+
   // 确保每排数量不会相差超过1
   const rows = [];
   let remaining = total;
@@ -67,35 +65,28 @@ export default function DeckSelector({ onSelectComplete, selectedCount = 3 }) {
   let globalIndex = 0;
 
   const handleCardClick = (card) => {
-    if (drawingId) return;
-    if (drawn.length >= selectedCount) return;
-    if (drawn.some((d) => d.id === card.id)) return;
+    const alreadyDrawn = drawn.some((d) => d.id === card.id);
 
-    if (pendingId === card.id) {
-      setPendingId(null);
-      setDrawingId(card.id);
+    if (alreadyDrawn) {
+      // Deselect: remove from drawn
+      setDrawn((prev) => prev.filter((d) => d.id !== card.id));
+      return;
+    }
 
+    // Select: add to drawn if under limit
+    if (drawn.length < selectedCount) {
       const newDrawn = [...drawn, card];
+      setDrawn(newDrawn);
 
-      setTimeout(() => {
-        setDrawn(newDrawn);
-        setDrawingId(null);
-
-        if (newDrawn.length === selectedCount) {
-          setTimeout(() => {
-            onSelectComplete(newDrawn);
-          }, 600);
-        }
-      }, 350);
-    } else {
-      setPendingId(card.id);
+      // Auto-confirm when reaching the target count
+      if (newDrawn.length === selectedCount) {
+        onSelectComplete(newDrawn);
+      }
     }
   };
 
   const handleReshuffle = () => {
     setDrawn([]);
-    setPendingId(null);
-    setDrawingId(null);
     setShuffledDeck(shuffleDeck(CARDS));
   };
 
@@ -118,23 +109,20 @@ export default function DeckSelector({ onSelectComplete, selectedCount = 3 }) {
               {row.map((card, i) => {
                 const num = globalIndex + 1;
                 globalIndex++;
-                const isDrawn = drawn.some((d) => d.id === card.id);
-                const isDrawing = drawingId === card.id;
-                const isPending = pendingId === card.id;
+                const isSelected = drawn.some((d) => d.id === card.id);
                 return (
                   <button
                     key={card.id}
                     type="button"
-                    className={`deck-fan-card ${isPending ? "fan-pending" : ""} ${isDrawing ? "fan-drawing" : ""} ${isDrawn ? "fan-drawn" : ""}`}
+                    className={`deck-fan-card ${isSelected ? "fan-selected" : ""}`}
                     onClick={() => handleCardClick(card)}
-                    disabled={isDrawn || Boolean(drawingId) || drawn.length >= selectedCount}
-                    aria-pressed={isPending}
+                    aria-pressed={isSelected}
                     aria-label={`选择第 ${num} 张牌`}
                     style={{
                       width: `${cardW}px`,
                       aspectRatio: "824 / 1332",
                       marginRight: i < row.length - 1 ? `-${overlap}px` : "0",
-                      zIndex: isPending ? 200 : i,
+                      zIndex: isSelected ? 200 : i,
                     }}
                   >
                     <div className="card-face card-front deck-fan-front">
@@ -170,6 +158,7 @@ export default function DeckSelector({ onSelectComplete, selectedCount = 3 }) {
             ))}
           </div>
         )}
+
       </div>
     </div>
   );

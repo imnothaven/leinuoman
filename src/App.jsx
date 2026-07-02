@@ -9,6 +9,7 @@ import ControlPanel from "./components/ControlPanel";
 import ConfirmModal from "./components/ConfirmModal";
 import HistoryPanel from "./components/HistoryPanel";
 import DeckSelector from "./components/DeckSelector";
+import PromptBox from "./components/PromptBox";
 
 const TABS = [
   { key: "draw", label: "抽牌解读", desc: "写下问题并抽取三张雷诺曼牌" },
@@ -140,6 +141,7 @@ export default function App() {
             {phase === "result" && (
               <div className="fade-in">
                 <CardGrid cards={cards} />
+                <PromptBox cards={cards} question={question} />
               </div>
             )}
           </>

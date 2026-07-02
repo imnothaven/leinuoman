@@ -18,8 +18,8 @@
 
 
 :root {
-  --palette-pink: #ff82a0;
-  --palette-rose: #d077ab;
+  --palette-pink: #d4bcc4;
+  --palette-rose: #bfb0b8;
   --palette-mauve: #9c70a7;
   --palette-violet: #6a6695;
   --palette-steel: #435979;
@@ -444,6 +444,10 @@ textarea:focus-visible {
   box-shadow: var(--shadow-md);
 }
 
+.history-detail {
+  background: #fff5ff;
+}
+
 .reading-panel {
   display: grid;
   gap: var(--space-4);
@@ -478,7 +482,7 @@ textarea:focus-visible {
 }
 
 .reading-entry {
-  padding: var(--space-4);
+  padding: var(--space-3);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--palette-steel) 6%, var(--color-surface));
@@ -552,8 +556,8 @@ textarea:focus-visible {
 
 .question-tips h3 {
   font-size: 1rem;
-  color: var(--palette-ink);
-  margin-bottom: var(--space-3);
+  color: var(--color-text-strong);
+  margin-bottom: 0;
   display: flex;
   align-items: center;
   gap: var(--space-2);
@@ -1036,18 +1040,19 @@ textarea:focus-visible {
   position: absolute;
   top: var(--space-2);
   left: var(--space-2);
-  z-index: 2;
+  z-index: 3;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 24px;
-  height: 20px;
-  padding: 0 var(--space-1);
+  min-width: 28px;
+  height: 22px;
+  padding: 0 var(--space-2);
   border-radius: 999px;
-  color: #fff7fa;
-  background: color-mix(in srgb, var(--palette-ink) 62%, transparent);
-  font-size: 0.7rem;
+  color: #fff;
+  background: var(--palette-ink);
+  font-size: 0.76rem;
   font-weight: 800;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 .fan-drawing {
@@ -1328,6 +1333,308 @@ textarea:focus-visible {
   .history-item-actions .btn {
     width: 100%;
   }
+
+  .prompt-textarea-wrapper textarea {
+    min-height: 220px;
+  }
+
+  /* New components mobile */
+  .reading-entry {
+    grid-template-columns: 28px 1fr;
+    gap: var(--space-2);
+  }
+
+  .reading-entry-number {
+    width: 28px;
+    height: 28px;
+    font-size: 0.76rem;
+  }
+
+  .deck-drawn-preview {
+    width: 72px;
+  }
+
+  .deck-confirm-row {
+    padding-top: var(--space-4);
+  }
+
+  .deck-confirm-row .btn {
+    width: 100%;
+  }
+
+  .reading-entries-divider {
+    margin: var(--space-4) 0;
+  }
+
+  .history-empty-icon {
+    width: 40px;
+    height: 52px;
+  }
+}
+
+/* ── New component styles ── */
+
+/* Card revealed glow after flip */
+.card-revealed-glow {
+  filter: drop-shadow(0 0 14px color-mix(in srgb, var(--palette-pink) 30%, transparent));
+  transition: filter 0.6s ease-out;
+}
+
+/* Tips collapsible */
+.tips-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.tips-header h3 {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.tips-toggle-btn {
+  appearance: none;
+  padding: var(--space-1) var(--space-2);
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--palette-rose);
+  background: transparent;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: opacity var(--transition-fast);
+}
+
+.tips-toggle-btn:hover {
+  opacity: 0.75;
+}
+
+.tips-content {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.35s var(--ease-out);
+}
+
+.tips-content.collapsed {
+  grid-template-rows: 0fr;
+}
+
+.tips-content-inner {
+  overflow: hidden;
+}
+
+/* Deck fan selected card */
+.fan-selected {
+  z-index: 50 !important;
+  transform: translateY(-10px) scale(1.06) !important;
+  border-color: var(--palette-pink) !important;
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--palette-pink) 25%, transparent) !important;
+  transition: transform 0.3s var(--ease-out), border-color 0.2s, box-shadow 0.3s var(--ease-out);
+}
+
+.deck-confirm-row {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-3);
+  animation: softRise 360ms var(--ease-out) both;
+}
+
+/* Reading entries */
+.reading-entries-divider {
+  position: relative;
+  height: 1px;
+  margin: var(--space-5) 0;
+  background: var(--color-border);
+}
+
+.reading-entries-divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--palette-pink);
+  opacity: 0.5;
+}
+
+.reading-entries-list {
+  display: grid;
+  gap: var(--space-4);
+  position: relative;
+}
+
+.reading-entry {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.reading-entry-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--palette-rose) 22%, var(--color-surface));
+  color: var(--color-text-strong);
+  font-size: 0.82rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: var(--space-1);
+}
+
+.reading-entry-body {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+/* Prompt box */
+.prompt-box {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-soft);
+  box-shadow: var(--shadow-md);
+  animation: softRise 420ms var(--ease-out) both;
+}
+
+.prompt-box-header {
+  text-align: center;
+}
+
+.prompt-box-header h3 {
+  color: var(--color-text-strong);
+  font-size: 1.18rem;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: var(--space-1);
+}
+
+.prompt-box-header p {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.prompt-mode-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  box-shadow: var(--shadow-sm);
+}
+
+.prompt-mode-tabs button {
+  min-height: 40px;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--color-text-light);
+  background: transparent;
+  font-size: 0.92rem;
+  font-weight: 700;
+  transition:
+    transform var(--transition-fast),
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.prompt-mode-tabs button.active {
+  color: #fff;
+  border-color: color-mix(in srgb, var(--palette-ink) 30%, transparent);
+  background: var(--palette-ink);
+}
+
+.prompt-mode-tabs button:hover:not(.active) {
+  color: var(--color-text-strong);
+  border-color: color-mix(in srgb, var(--palette-pink) 28%, transparent);
+  background: color-mix(in srgb, var(--palette-pink) 8%, var(--color-surface));
+  transform: translateY(-1px);
+}
+
+.prompt-textarea-wrapper textarea {
+  width: 100%;
+  min-height: 260px;
+  padding: var(--space-4);
+  resize: vertical;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  color: var(--color-text);
+  background: var(--color-surface);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  font-family: inherit;
+}
+
+.prompt-textarea-wrapper textarea:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-focus) 42%, transparent);
+  outline-offset: 3px;
+  border-color: var(--palette-pink);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--palette-pink) 18%, transparent);
+}
+
+.prompt-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.prompt-actions .btn.copied {
+  background: var(--palette-rose);
+}
+
+/* Prompt box additions */
+.prompt-mode-tip {
+  color: var(--color-text-light);
+  font-size: 0.82rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.prompt-char-count {
+  color: var(--color-text-light);
+  font-size: 0.76rem;
+  text-align: right;
+}
+
+/* History staggered animation */
+.history-item {
+  animation: softRise 420ms var(--ease-out) both;
+  animation-delay: var(--stagger-delay, 0ms);
+}
+
+.history-empty-icon {
+  width: 48px;
+  height: 64px;
+  margin: 0 auto var(--space-3);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  opacity: 0.5;
+}
+
+.btn-delete {
+  color: var(--color-danger);
+  border-color: color-mix(in srgb, var(--color-danger) 30%, transparent);
+}
+
+.btn-delete:hover {
+  background: color-mix(in srgb, var(--color-danger) 15%, transparent);
+  border-color: var(--color-danger);
 }
 
 @media (prefers-reduced-motion: reduce) {

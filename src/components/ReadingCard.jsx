@@ -40,7 +40,7 @@ export default function ReadingCard({ card, index, isHistory = false }) {
 
       <div className="card-scene">
         <div
-          className={`card-flip ${flipped ? "flipped" : ""} ${revealing ? "revealing" : ""}`}
+          className={`card-flip ${flipped ? "flipped" : ""} ${revealing ? "revealing" : ""} ${flipped && !isHistory ? "card-revealed-glow" : ""}`}
         >
           <div className="card-face card-front">
             <img
@@ -57,7 +57,10 @@ export default function ReadingCard({ card, index, isHistory = false }) {
       </div>
 
       {showInfo && (
-        <div className="card-info-panel card-info-enter">
+        <div
+          className="card-info-panel card-info-enter"
+          style={{ animationDelay: `${index * 150}ms` }}
+        >
           <h3>{card.name}</h3>
           <div className="card-en">{card.nameEn}</div>
           <p className="card-meaning">{card.meaning}</p>

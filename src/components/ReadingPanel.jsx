@@ -1,5 +1,7 @@
 import CardGrid from "./CardGrid";
 
+const POSITION_COLORS = ["#d4688e", "#7e6b9e", "#9b7fa8"];
+
 export default function ReadingPanel({ reading, summary, question, showCards = true, isHistory = false, showReadingEntries = true }) {
   if (!reading || reading.length === 0) return null;
 
@@ -7,6 +9,8 @@ export default function ReadingPanel({ reading, summary, question, showCards = t
     ...entry,
     spreadLabel: entry.positionLabel
   }));
+
+  const hasDivider = showCards && showReadingEntries && reading.length > 0;
 
   return (
     <div className="reading-panel">
@@ -22,24 +26,37 @@ export default function ReadingPanel({ reading, summary, question, showCards = t
 
       {showCards && <CardGrid cards={cards} isHistory={isHistory} />}
 
-      {showReadingEntries && reading.map((entry, i) => (
-        <div key={i} className="reading-entry">
-          <div className="reading-entry-position">
-            {entry.positionLabel}
-          </div>
-          <div className="reading-entry-name">
-            {entry.name}
-            {entry.nameEn && (
-              <span className="reading-entry-en">
-                {entry.nameEn}
-              </span>
-            )}
-          </div>
-          <div className="reading-entry-text">
-            {entry.meaning}
-          </div>
+      {hasDivider && (
+        <div className="reading-entries-divider"></div>
+      )}
+
+      {showReadingEntries && (
+        <div className="reading-entries-list">
+          {reading.map((entry, i) => (
+            <div key={i} className="reading-entry" style={{ "--entry-color": POSITION_COLORS[i] || POSITION_COLORS[0], "--entry-index": i }}>
+              <div className="reading-entry-number">
+                {i + 1}
+              </div>
+              <div className="reading-entry-body">
+                <div className="reading-entry-position">
+                  {entry.positionLabel}
+                </div>
+                <div className="reading-entry-name">
+                  {entry.name}
+                  {entry.nameEn && (
+                    <span className="reading-entry-en">
+                      {entry.nameEn}
+                    </span>
+                  )}
+                </div>
+                <div className="reading-entry-text">
+                  {entry.meaning}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
 
       {showReadingEntries && summary?.themes && summary.themes.length > 0 && (
         <div className="reading-themes">
