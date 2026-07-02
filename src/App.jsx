@@ -42,9 +42,13 @@ export default function App() {
       const spread = createSpread(selectedCards);
       setCards(spread);
       setTransitioning(true);
+      setShowPrompt(false);
       setTimeout(() => {
         setPhase("result");
         setTransitioning(false);
+        setCardsDrawn(true);
+        // Wait for all 3 cards to finish flipping (last card: index 2, delay 400+1000+100=1500ms)
+        setTimeout(() => setShowPrompt(true), 1600);
       }, 520);
     } catch (e) {
       console.error("选牌出错:", e);
@@ -77,6 +81,8 @@ export default function App() {
     setQuestion("");
     setPhase("input");
     setTransitioning(false);
+    setCardsDrawn(false);
+    setShowPrompt(false);
   }
 
   // 安全计算 reading 和 summary
@@ -96,7 +102,26 @@ export default function App() {
     }
   })() : { title: "", themes: [] };
   
-  const cardsDrawn = cards.length > 0;
+  const [cardsDrawn, setCardsDrawn] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(false);
+
+  function handleSelectComplete(selectedCards) {
+    try {
+      const spread = createSpread(selectedCards);
+      setCards(spread);
+      setTransitioning(true);
+      setShowPrompt(false);
+      setTimeout(() => {
+        setPhase("result");
+        setTransitioning(false);
+        setCardsDrawn(true);
+        // Wait for all 3 cards to finish flipping (last card: index 2, delay 400+1000+100=1500ms)
+        setTimeout(() => setShowPrompt(true), 1600);
+      }, 520);
+    } catch (e) {
+      console.error("选牌出错:", e);
+    }
+  }
 
   return (
     <ErrorBoundary>
@@ -141,7 +166,7 @@ export default function App() {
             {phase === "result" && (
               <div className="fade-in">
                 <CardGrid cards={cards} />
-                <PromptBox cards={cards} question={question} />
+                {showPrompt && <PromptBox cards={cards} question={question} />}
               </div>
             )}
           </>

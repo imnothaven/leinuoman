@@ -208,12 +208,14 @@ textarea:focus-visible {
   aspect-ratio: 824 / 1320;
   cursor: default;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transition: transform var(--transition-slow);
   will-change: transform;
 }
 
 .card-flip.flipped {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 
 .card-face {
@@ -223,6 +225,7 @@ textarea:focus-visible {
   border: 1px solid color-mix(in srgb, var(--palette-ink) 18%, transparent);
   border-radius: var(--radius-md);
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   background: var(--color-surface);
 }
 
@@ -233,6 +236,9 @@ textarea:focus-visible {
   color: var(--palette-pink);
   background: var(--palette-steel);
   box-shadow: var(--shadow-card);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(0deg);
 }
 
 .reading-card-back-img,
@@ -252,6 +258,8 @@ textarea:focus-visible {
 
 .card-back {
   transform: rotateY(180deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   box-shadow: var(--shadow-card);
 }
 
